@@ -1,1 +1,43 @@
 @import "bootstrap";
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(85, 82, 83, 0.9);
+}
+
+.navbar {
+  background-color: rgba(24, 21, 22, 0.9);
+}
+
+.make-it-green {
+  color: #00C122;
+}
+
+.page-content {
+  margin-left: 20px;
+}
+
+.container {
+  display: -webkit-flexbox;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  padding: 10px;
+  border: 2px solid;
+  border-color: #00C122;
+  border-radius: 10px;
+}
+
+.box-color {
+  background-color: rgba(24, 21, 22, 0.9);
+}

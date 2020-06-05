@@ -1,9 +1,10 @@
-<h2>Home Page</h2>
+<div class="page-content">
 
-<% if !current_user %>
-  <h3><%= link_to "Log in", new_user_session_path %></h3>
-  <h3><%= link_to "Sign up", new_user_registration_path %></h3>
-<% else %>
-  <h3><%= "Logged in as #{current_user.username}" %></h3>
-  <h3><%= link_to 'Log out', destroy_user_session_path, method: :delete %></h3>
-<% end %>
+  <% if !current_user %>
+    <%= link_to "Log in", new_user_session_path, class: "btn btn-primary make-it-green" %>
+    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary make-it-green" %>
+  <% else %>
+    <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-primary make-it-green" %>
+  <% end %>
+
+</div>
