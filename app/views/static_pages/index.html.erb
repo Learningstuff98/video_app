@@ -5,6 +5,15 @@
     <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary make-it-green" %>
   <% else %>
     <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-primary make-it-green" %>
+    <br/><br/>
+    <%= link_to "Start A Channel", new_channel_path, class: "btn btn-primary make-it-green" %>
+  <% end %>
+
+  <br/><br/>
+
+  <% @channels.each do |channel| %>
+    <h3><%= link_to "#{channel.name}", channel_path(channel), class: "make-it-green" %></h3>
+    <br/>
   <% end %>
 
 </div>
