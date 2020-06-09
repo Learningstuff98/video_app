@@ -1,0 +1,20 @@
+<div class="page-content">
+  <h1 class="make-it-green">Post's show page</h1>
+
+  <br/><br/>
+
+  <%= link_to "Back to channel", channel_path(@channel), class: "btn btn-primary make-it-green" %>
+
+  <br/><br/>
+
+  <h2 class="make-it-green">
+    <%= "Insert video here at a later date" %>
+    <br/><br/>
+    <%= "#{@channel.name}" %>
+    <br/><br/>
+    <%= "video title: #{@post.title}" %>
+    <br/><br/>
+    <%= "video description: #{@post.description}" %>
+  </h2>
+
+</div>

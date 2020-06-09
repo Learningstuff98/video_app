@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="box col-10">
+    <h2 class="make-it-green">Upload Video</h2>
+    <br/>
+    <%= simple_form_for @post, url: channel_posts_path(@channel) do |f|%>
+      <%= f.input :title %>
+      <br />
+      <%= f.input :description %>
+      <%= f.submit 'Upload', class: 'btn btn-primary make-it-green' %>
+    <% end %>
+  </div>
+</div>
