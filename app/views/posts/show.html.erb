@@ -17,4 +17,12 @@
     <%= "video description: #{@post.description}" %>
   </h2>
 
+  <br/><br/>
+
+  <% if @post.picture.url %>
+    <%= image_tag @post.picture.url, class: "post_thumbnail"%>
+  <% end %>
+
 </div>
+
+<br/><br/><br/><br/>

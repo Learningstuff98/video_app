@@ -11,6 +11,12 @@ gem 'react-rails'
 
 gem 'axios_rails'
 
+gem 'carrierwave', '~> 2.0'
+
+gem 'figaro'
+
+gem 'fog-aws'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
 # Use postgresql as the database for Active Record
