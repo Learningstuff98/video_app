@@ -1,33 +1,26 @@
 <div class="page-content">
-  <h1 class="make-it-green">Post's show page</h1>
 
   <br/><br/>
 
-  <%= link_to "Back to channel", channel_path(@channel), class: "btn btn-primary make-it-green" %>
+  <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="900" height="500"
+    poster="<%= image_path(@post.picture) %>" data-setup="{}">
+    <source src="<%= @post.video.to_s %>" type='video/mp4'>
+    <noscript>
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a web browser that
+        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+      </p>
+    </noscript>
+  </video>
 
-  <br/><br/>
-
-  <h2 class="make-it-green">
-    <%= "Insert video here at a later date" %>
-    <br/><br/>
-    <%= "#{@channel.name}" %>
-    <br/><br/>
-    <%= "video title: #{@post.title}" %>
-    <br/><br/>
-    <%= "video description: #{@post.description}" %>
-  </h2>
-
-  <br/><br/>
-
-  <% if @post.picture.url %>
-    <%= image_tag @post.picture.url, class: "post_thumbnail img-fluid" %>
-  <% end %>
-
-  <br/><br/>
-
-  <h3>
-    <%= link_to 'Video', @post.video.to_s, class: "make-it-green" %>
-  </h3>
+  <div class="make-it-green">
+    <br/>
+    <h3><%= @post.title %></h3>
+    <br/>
+    <h4><%= link_to "#{@channel.name}", channel_path(@channel), class: "make-it-green" %></h4>
+    <br/>
+    <h4><%= @post.description %></h4>
+  </div>
 
 </div>
 
