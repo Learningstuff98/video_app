@@ -1,11 +1,14 @@
 <div class="page-content make-it-green">
-  <h1>Channel's show page</h1>
 
-  <br/><br/>
-
-  <h4><%= @channel.name %></h4>
+  <h3><%= @channel.name %></h3>
   <br/>
-  <h5><%= @channel.description %></h5>
+  <h4><%= @channel.description %></h4>
+
+</div>
+
+<div class="channel-header-line"></div>
+
+<div class="page-content make-it-green">
 
   <% if current_user && current_user == @channel.user %>
     <br/><br/>
@@ -15,10 +18,11 @@
   <br/><br/>
 
   <% for post in @posts %>
-    <h4>
-      <%= link_to post.title, channel_post_path(@channel, post), class: "make-it-green" %>
-    </h4>
-    <br/><br/>
+    <%= image_tag post.picture.url, class: "post-image" %>
+    <div>
+      <%= link_to post.title, channel_post_path(@channel, post), class: "make-it-green post-link" %>
+    </div>
+    <br/>
   <% end %>
 
 </div>
