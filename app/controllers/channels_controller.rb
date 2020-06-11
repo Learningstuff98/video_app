@@ -16,7 +16,12 @@ class ChannelsController < ApplicationController
 
   def show
     @channel = Channel.find(params[:id])
-    @posts = @channel.posts.all
+    @posts = @channel.posts.all.reverse
+    @search = params["search"]
+    if @search.present?
+      @title = @search["title"]
+      @posts = Post.where("title ILIKE ?", "%#{@title}%")
+    end
   end
 
   private
