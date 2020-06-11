@@ -20,8 +20,14 @@
   <br/><br/>
 
   <% if @post.picture.url %>
-    <%= image_tag @post.picture.url, class: "post_thumbnail"%>
+    <%= image_tag @post.picture.url, class: "post_thumbnail img-fluid" %>
   <% end %>
+
+  <br/><br/>
+
+  <h3>
+    <%= link_to 'Video', @post.video.to_s, class: "make-it-green" %>
+  </h3>
 
 </div>
 
