@@ -12,9 +12,11 @@
 
   <% if current_user && current_user == @channel.user %>
     <br/><br/>
-    <%= link_to "Add A Video", new_channel_post_path(@channel), class: "btn btn-primary make-it-green" %>
+    <%= link_to "Add a video", new_channel_post_path(@channel), class: "btn btn-primary make-it-green" %>
     <br/><br/>
     <%= link_to "Edit this channel", edit_channel_path(@channel), class: "btn btn-primary make-it-green" %>
+    <br/><br/>
+    <%= link_to "Delete this channel", channel_path(@channel), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary make-it-green" %>
   <% end %>
 
   <br/><br/><br/>

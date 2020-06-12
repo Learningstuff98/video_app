@@ -1,5 +1,5 @@
 class ChannelsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def new
     @channel = Channel.new
@@ -37,6 +37,15 @@ class ChannelsController < ApplicationController
     if current_user == @channel.user
       @channel.update_attributes(channel_params)
       redirect_to channel_path(@channel)
+    end
+  end
+
+  def destroy
+    channel = Channel.find(params[:id])
+    if current_user == channel.user
+      channel.posts.destroy_all
+      channel.destroy
+      redirect_to root_path
     end
   end
 
