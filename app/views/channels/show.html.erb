@@ -13,6 +13,8 @@
   <% if current_user && current_user == @channel.user %>
     <br/><br/>
     <%= link_to "Add A Video", new_channel_post_path(@channel), class: "btn btn-primary make-it-green" %>
+    <br/><br/>
+    <%= link_to "Edit this channel", edit_channel_path(@channel), class: "btn btn-primary make-it-green" %>
   <% end %>
 
   <br/><br/><br/>

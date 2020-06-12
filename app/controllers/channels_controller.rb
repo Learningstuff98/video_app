@@ -1,5 +1,5 @@
 class ChannelsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def new
     @channel = Channel.new
@@ -22,6 +22,21 @@ class ChannelsController < ApplicationController
       @title = @search["title"]
       @posts = Post.where("title ILIKE ?", "%#{@title}%")
       @posts = @posts.order("created_at DESC").page(params[:page]).per_page(2)
+    end
+  end
+
+  def edit
+    @channel = Channel.find(params[:id])
+    if current_user != @channel.user
+      render plain: 'Unauthorized', status: :unauthorized
+    end
+  end
+
+  def update
+    @channel = Channel.find(params[:id])
+    if current_user == @channel.user
+      @channel.update_attributes(channel_params)
+      redirect_to channel_path(@channel)
     end
   end
 
