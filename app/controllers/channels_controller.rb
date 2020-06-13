@@ -10,7 +10,7 @@ class ChannelsController < ApplicationController
     if @channel.valid?
       redirect_to channel_path(@channel)
     else
-      render :new, status: :unprocessable_entity
+      redirect_to new_channel_path
     end
   end
 

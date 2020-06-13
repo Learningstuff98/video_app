@@ -2,6 +2,8 @@
   <div class="box col-10">
     <h2 class="make-it-green">Upload Video</h2>
     <br/>
+    <h4 class="make-it-red">Title is required</h4>
+    <br/>
     <%= simple_form_for @post, url: channel_posts_path(@channel) do |f|%>
       <%= f.input :title %>
       <br />

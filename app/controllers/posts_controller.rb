@@ -14,7 +14,11 @@ class PostsController < ApplicationController
     channel = Channel.find(params[:channel_id])
     if current_user == channel.user
       post = channel.posts.create(post_params)
-      redirect_to channel_post_path(channel, post)
+      if post.valid?
+        redirect_to channel_post_path(channel, post)
+      else
+        redirect_to new_channel_post_path(channel)
+      end
     end
   end
 

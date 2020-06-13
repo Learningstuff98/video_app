@@ -2,6 +2,8 @@
   <div class="box col-10">
     <h2 class="make-it-green">Start A New Channel</h2>
     <br/>
+    <h4 class="make-it-red">Name and description are required</h4>
+    <br/>
     <%= simple_form_for @channel, url: channels_path do |f|%>
       <%= f.input :name %>
       <br />
