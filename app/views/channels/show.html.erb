@@ -47,7 +47,7 @@
 
   <% for post in @posts %>
     <%= image_tag post.picture.url, class: "post-image" %>
-    <div>
+    <div class="col-6 move-left">
       <%= link_to post.title, channel_post_path(@channel, post), class: "make-it-green post-link" %>
     </div>
     <br/>

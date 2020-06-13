@@ -15,11 +15,13 @@
 
   <div class="make-it-green">
     <br/>
-    <h3><%= @post.title %></h3>
+    <div class="col-6 move-left">
+      <h3><%= @post.title %></h3>
+    </div>
     <br/>
-    <h4><%= link_to "#{@channel.name}", channel_path(@channel), class: "make-it-green" %></h4>
+    <h4><%= link_to "Go to #{@channel.name} videos", channel_path(@channel), class: "make-it-green" %></h4>
     <br/>
-    <h4><%= @post.description %></h4>
+    <%= react_component("Description", { description: @post.description }) %>
   </div>
 
 </div>
