@@ -7,23 +7,23 @@ class Description extends React.Component {
   }
 
   invertDescriptionShowStatus() {
-    this.setState({ 
-      descriptionIsToBeShown: !this.state.descriptionIsToBeShown 
+    this.setState({
+      descriptionIsToBeShown: !this.state.descriptionIsToBeShown
     });
   }
 
-  setButtonLabel() {
+  setButtonVerb() {
     if(this.state.descriptionIsToBeShown) {
-      return "Hide Description";
+      return "Hide";
     } else {
-      return "Show Description";
+      return "Show";
     }
   }
 
   buildDescriptionButton() {
     return <h4 onClick={() => this.invertDescriptionShowStatus()}>
       <div className='cursor description-button'>
-        {this.setButtonLabel()}
+        {`${this.setButtonVerb()} description`}
       </div>
     </h4>
   }
