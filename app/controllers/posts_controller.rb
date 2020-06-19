@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def new
     @channel = Channel.find(params[:channel_id])
@@ -28,10 +28,19 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @channel = Channel.find(params[:channel_id])
+    @post = Post.find(params[:id])
+    if current_user != @channel.user
+      render plain: 'Unauthorized', status: :unauthorized
+    end
+  end
+
+  def update
     channel = Channel.find(params[:channel_id])
     @post = Post.find(params[:id])
-    if current_user != channel.user
-      render plain: 'Unauthorized', status: :unauthorized
+    if current_user == channel.user
+      @post.update_attributes(post_params)
+      redirect_to channel_post_path(channel, @post)
     end
   end
 
