@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
 
   def new
     @channel = Channel.find(params[:channel_id])
@@ -25,6 +25,14 @@ class PostsController < ApplicationController
   def show
     @channel = Channel.find(params[:channel_id])
     @post = Post.find(params[:id])
+  end
+
+  def edit
+    channel = Channel.find(params[:channel_id])
+    @post = Post.find(params[:id])
+    if current_user != channel.user
+      render plain: 'Unauthorized', status: :unauthorized
+    end
   end
 
   private

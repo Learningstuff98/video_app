@@ -19,6 +19,7 @@
       <h3><%= @post.title %></h3>
     </div>
     <br/>
+    <h4><%= link_to "Edit this post", edit_channel_post_path(@channel, @post), class: "make-it-green" %></h4>
     <h4><%= link_to "Go to #{@channel.name} videos", channel_path(@channel), class: "make-it-green" %></h4>
     <br/>
     <%= react_component("Description", { description: @post.description }) %>
