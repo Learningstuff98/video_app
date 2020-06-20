@@ -22,6 +22,7 @@ class Comments extends React.Component {
       <CommentForm
         root_with_post_instance={this.props.root_with_post_instance}
         getComments={this.getComments}
+        current_user={this.props.current_user}
       />
     </div>
   }
