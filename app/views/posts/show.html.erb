@@ -27,6 +27,8 @@
     <h4><%= link_to "Go to #{@channel.name} videos", channel_path(@channel), class: "make-it-green" %></h4>
     <br/>
     <%= react_component("Description", { description: @post.description }) %>
+    <br/>
+    <%= react_component("Comments", { root_with_post_instance: polymorphic_url(@post), current_user: current_user, post: @post }) %>
   </div>
 
 </div>

@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   resources :channels, only: [:new, :create, :show, :edit, :update, :destroy] do
     resources :posts, only: [:new, :create, :show, :edit, :update, :destroy]
   end
+  resources :posts do
+    resources :comments, only: [:create, :index]
+  end
 end
