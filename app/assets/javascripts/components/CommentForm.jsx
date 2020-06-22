@@ -21,7 +21,10 @@ class CommentForm extends React.Component {
   render() {
     if(this.props.current_user) {
       return <form onSubmit={(e) => this.onSubmitForComment(e)}>
-        <input type='text' placeholder='Comment...' ref={(input) => this.commentContent = input}/>
+        <div className="comment-input">
+          <input type='text' placeholder='Comment...' size="50" ref={(input) => this.commentContent = input}/>
+          <br/>
+        </div>
         <input type="submit" value="Add comment" className="btn btn-primary make-it-green"/>
       </form>
     } else {

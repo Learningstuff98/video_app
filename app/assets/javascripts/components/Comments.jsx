@@ -31,10 +31,11 @@ class Comments extends React.Component {
     if(comments) {
       return <div>
         {comments.map((comment) => {
-          return <h4 key={comment.id}>
-            {comment.content}
-            <br/>
-          </h4>
+          return <div key={comment.id}>
+            <Comment
+              comment={comment}
+            />
+          </div>
         })}
       </div>
     }
