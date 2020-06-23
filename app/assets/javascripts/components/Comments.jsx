@@ -34,6 +34,9 @@ class Comments extends React.Component {
           return <div key={comment.id}>
             <Comment
               comment={comment}
+              current_user={this.props.current_user}
+              root_with_post_instance={this.props.root_with_post_instance}
+              getComments={this.getComments}
             />
           </div>
         })}

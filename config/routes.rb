@@ -5,6 +5,6 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create, :show, :edit, :update, :destroy]
   end
   resources :posts do
-    resources :comments, only: [:create, :index]
+    resources :comments, only: [:create, :index, :destroy]
   end
 end
