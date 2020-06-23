@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :destroy]
-  before_action :authenticate_user!, only: [:create, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:create, :destroy, :update]
+  before_action :authenticate_user!, only: [:create, :destroy, :update]
 
   def create
     post = Post.find(params[:post_id])
@@ -17,6 +17,13 @@ class CommentsController < ApplicationController
     comment = Comment.find(params[:id])
     if current_user == comment.user
       comment.destroy
+    end
+  end
+
+  def update
+    comment = Comment.find(params[:id])
+    if current_user == comment.user
+      comment.update_attributes(comment_params)
     end
   end
 
