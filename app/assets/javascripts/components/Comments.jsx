@@ -2,7 +2,7 @@ class Comments extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      comments: null
+      comments: []
     };
     this.getComments = this.getComments.bind(this);
   }
@@ -28,20 +28,18 @@ class Comments extends React.Component {
   }
 
   renderComments(comments) {
-    if(comments) {
-      return <div>
-        {comments.map((comment) => {
-          return <div key={comment.id}>
-            <Comment
-              comment={comment}
-              current_user={this.props.current_user}
-              root_with_post_instance={this.props.root_with_post_instance}
-              getComments={this.getComments}
-            />
-          </div>
-        })}
-      </div>
-    }
+    return <div>
+      {comments.map((comment) => {
+        return <div key={comment.id}>
+          <Comment
+            comment={comment}
+            current_user={this.props.current_user}
+            root_with_post_instance={this.props.root_with_post_instance}
+            getComments={this.getComments}
+          />
+        </div>
+      })}
+    </div>
   }
 
   render() {
