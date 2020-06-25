@@ -66,7 +66,7 @@ class Comment extends React.Component {
     });
   }
 
-  renderEditForm() {
+  renderCommentEditForm() {
     return <form onSubmit={(e) => this.onSubmitForComment(e)}>
       <div className="comment-input">
         <input type='text' defaultValue={this.props.comment.content} size="50" ref={(input) => this.commentContent = input}/>
@@ -77,15 +77,17 @@ class Comment extends React.Component {
   }
 
   renderComment() {
+    return <div>
+      <h5>{`By ${this.props.comment.username}`}</h5>
+      <h4>{this.props.comment.content}</h4>
+    </div>
+  }
+
+  handleComment() {
     if(this.state.editFormIsToBeShown) {
-      return <div>
-        {this.renderEditForm()}
-      </div>
+      return <div>{this.renderCommentEditForm()}</div>
     } else {
-      return <div>
-        <h5>{`By ${this.props.comment.username}`}</h5>
-        <h4>{this.props.comment.content}</h4>
-      </div>
+      return <div>{this.renderComment()}</div>
     }
   }
 
@@ -93,7 +95,7 @@ class Comment extends React.Component {
     return <div>
       <div className="col-7">
         <hr className="comment-divider"/>
-        {this.renderComment()}
+        {this.handleComment()}
         {this.handleUserButtons()}
       </div>
     </div>
