@@ -2,7 +2,7 @@ class CommentForm extends React.Component {
 
   submitComment(formData) {
     axios.post(this.props.root_with_post_instance + '/comments', formData)
-    .then((res) => this.props.getComments())
+    .then(() => this.props.getComments())
     .catch((err) => console.log(err.response.data));
   }
 
