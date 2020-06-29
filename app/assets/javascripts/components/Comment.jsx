@@ -10,6 +10,7 @@ class Comment extends React.Component {
     this.getReplies = this.getReplies.bind(this);
     this.invertReplyFormShowStatus = this.invertReplyFormShowStatus.bind(this);
     this.setToShowReplies = this.setToShowReplies.bind(this);
+    this.invertEditFormStatus = this.invertEditFormStatus.bind(this);
   }
 
   componentDidMount() {
@@ -69,38 +70,21 @@ class Comment extends React.Component {
     </span>
   }
 
-  handleEditResults() {
-    this.props.getComments();
-    this.invertEditFormStatus();
-  }
-
-  submitComment(formData) {
-    axios.patch(this.props.root_with_post_instance + '/comments/' + this.props.comment.id, formData)
-    .then(() => this.handleEditResults())
-    .catch((err) => console.log(err.response.data));
-  }
-
-  onSubmitForComment(e) {
-    e.preventDefault();
-    this.submitComment({
-      content: this.commentContent.value
-    });
-  }
-
-  renderCommentEditForm() {
-    return <form onSubmit={(e) => this.onSubmitForComment(e)}>
-      <div className="comment-input">
-        <input type='text' defaultValue={this.props.comment.content} size="50" ref={(input) => this.commentContent = input}/>
-        <br/>
-      </div>
-      <input type="submit" value="Edit comment" className="btn btn-primary make-it-green"/>
-    </form>
-  }
-
   renderComment() {
     return <div>
       <h5>{`By ${this.props.comment.username}`}</h5>
       <h4>{this.props.comment.content}</h4>
+    </div>
+  }
+
+  renderCommentEditForm() {
+    return <div>
+      <CommentEditForm
+        getComments={this.props.getComments}
+        invertEditFormStatus={this.invertEditFormStatus}
+        root_with_post_instance={this.props.root_with_post_instance}
+        comment={this.props.comment}
+      />
     </div>
   }
 
@@ -194,7 +178,7 @@ class Comment extends React.Component {
     }
   }
 
-  HandleShowRepliesButton() {
+  HandleShowRepliesButtonLabel() {
     if(this.state.repliesAreToBeShown) {
       return `Hide repl${this.handleSpelling()}`;
     } else if(this.state.replies.length > 0) {
@@ -204,7 +188,7 @@ class Comment extends React.Component {
 
   renderShowRepliesButton() {
     return <span className="comment-button cursor" onClick={() => this.invertShowRepliesStatus()}>
-      {this.HandleShowRepliesButton()}
+      {this.HandleShowRepliesButtonLabel()}
     </span>
   }
 

@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
   def destroy
     comment = Comment.find(params[:id])
     if current_user == comment.user
+      comment.replies.destroy_all
       comment.destroy
     end
   end
