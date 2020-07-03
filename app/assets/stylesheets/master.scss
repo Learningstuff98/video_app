@@ -99,3 +99,15 @@ body {
   margin-top: 15px;
   padding-bottom: 10px;
 }
+
+.links {
+  width: 500px;
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.navbar {
+  min-height: 110px;
+}
