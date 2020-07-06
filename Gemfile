@@ -21,6 +21,8 @@ gem 'carrierwave-aws'
 
 gem 'will_paginate', '> 3.0'
 
+gem "font-awesome-rails"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
 # Use postgresql as the database for Active Record

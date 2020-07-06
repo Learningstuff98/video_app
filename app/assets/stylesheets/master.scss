@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "font-awesome";
 
 body {
   min-height: 100%;
@@ -109,5 +110,13 @@ body {
 }
 
 .navbar {
-  min-height: 110px;
+  min-height: 140px;
+}
+
+.navbar-info {
+  margin-top: 25px;
+}
+
+.link {
+  margin: 15px;
 }
