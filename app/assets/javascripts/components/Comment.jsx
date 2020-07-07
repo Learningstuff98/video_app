@@ -150,6 +150,7 @@ class Comment extends React.Component {
             current_user={this.props.current_user}
             root_with_post_instance={this.props.root_with_post_instance}
             getReplies={this.getReplies}
+            setButtonDivider={this.setButtonDivider}
           />
         </div>
       })}

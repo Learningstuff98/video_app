@@ -1,6 +1,6 @@
 class RepliesController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :destroy]
-  before_action :authenticate_user!, only: [:create, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:create, :destroy, :update]
+  before_action :authenticate_user!, only: [:create, :destroy, :update]
 
   def index
     comment = Comment.find(params[:comment_id])
@@ -17,6 +17,13 @@ class RepliesController < ApplicationController
     reply = Reply.find(params[:id])
     if current_user == reply.user
       reply.destroy
+    end
+  end
+
+  def update
+    reply = Reply.find(params[:id])
+    if current_user == reply.user
+      reply.update_attributes(reply_params)
     end
   end
 
