@@ -146,6 +146,10 @@ class Comment extends React.Component {
         return <div key={reply.id}>
           <Reply
             reply={reply}
+            comment={this.props.comment}
+            current_user={this.props.current_user}
+            root_with_post_instance={this.props.root_with_post_instance}
+            getReplies={this.getReplies}
           />
         </div>
       })}
@@ -187,9 +191,11 @@ class Comment extends React.Component {
   }
 
   renderShowRepliesButton() {
-    return <span className="comment-button cursor" onClick={() => this.invertShowRepliesStatus()}>
-      {this.HandleShowRepliesButtonLabel()}
-    </span>
+    if(this.state.replies.length > 0) {
+      return <span className="comment-button cursor" onClick={() => this.invertShowRepliesStatus()}>
+        {this.HandleShowRepliesButtonLabel()}
+      </span>
+    }
   }
 
   render() {
