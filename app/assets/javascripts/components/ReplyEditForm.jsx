@@ -1,7 +1,7 @@
 class ReplyEditForm extends React.Component {
 
   submitReply(formData) {
-    axios.patch(this.props.root_with_post_instance + '/comments/' + this.props.comment.id + '/replies/' + this.props.reply.id, formData)
+    axios.patch(this.props.setRoot() + 'replies/' + this.props.reply.id, formData)
     .then(() => this.handleReplySubmissionResult())
     .catch((err) => console.log(err.response.data));
   }

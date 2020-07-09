@@ -1,7 +1,7 @@
 class ReplyForm extends React.Component {
 
   submitReply(formData) {
-    axios.post(this.props.root_with_post_instance + '/comments/' + this.props.comment.id + '/replies', formData)
+    axios.post(this.props.setRoot() + 'comments/' + this.props.comment.id + '/replies', formData)
     .then(() => this.handleReplySubmissionResult())
     .catch((err) => console.log(err.response.data));
   }

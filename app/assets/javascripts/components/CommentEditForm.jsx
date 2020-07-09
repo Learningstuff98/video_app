@@ -6,7 +6,7 @@ class CommentEditForm extends React.Component {
   }
 
   submitComment(formData) {
-    axios.patch(this.props.root_with_post_instance + '/comments/' + this.props.comment.id, formData)
+    axios.patch(this.props.setRoot() + 'comments/' + this.props.comment.id, formData)
     .then(() => this.handleEditResults())
     .catch((err) => console.log(err.response.data));
   }

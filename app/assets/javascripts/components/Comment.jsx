@@ -18,13 +18,13 @@ class Comment extends React.Component {
   }
 
   getReplies() {
-    axios.get(this.props.root_with_post_instance + '/comments/' + this.props.comment.id + '/replies')
+    axios.get(this.props.setRoot() + 'comments/' + this.props.comment.id + '/replies')
     .then((res) => this.setState({ replies: res.data }))
     .catch((err) => console.log(err.response.data));
   }
 
   deleteComment() {
-    axios.delete(this.props.root_with_post_instance + '/comments/' + this.props.comment.id)
+    axios.delete(this.props.setRoot() + 'comments/' + this.props.comment.id)
     .then(() => this.props.getComments())
     .catch((err) => console.log(err.response.data));
   }
@@ -82,8 +82,8 @@ class Comment extends React.Component {
       <CommentEditForm
         getComments={this.props.getComments}
         invertEditFormStatus={this.invertEditFormStatus}
-        root_with_post_instance={this.props.root_with_post_instance}
         comment={this.props.comment}
+        setRoot={this.props.setRoot}
       />
     </div>
   }
@@ -100,12 +100,12 @@ class Comment extends React.Component {
     if(this.state.replyFormIsToBeShown) {
       return <div>
         <ReplyForm
-          root_with_post_instance={this.props.root_with_post_instance}
           comment={this.props.comment}
           current_user={this.props.current_user}
           getReplies={this.getReplies}
           invertReplyFormShowStatus={this.invertReplyFormShowStatus}
           setToShowReplies={this.setToShowReplies}
+          setRoot={this.props.setRoot}
         />
       </div>
     }
@@ -148,9 +148,9 @@ class Comment extends React.Component {
             reply={reply}
             comment={this.props.comment}
             current_user={this.props.current_user}
-            root_with_post_instance={this.props.root_with_post_instance}
             getReplies={this.getReplies}
             setButtonDivider={this.setButtonDivider}
+            setRoot={this.props.setRoot}
           />
         </div>
       })}

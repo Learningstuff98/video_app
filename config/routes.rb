@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   resources :channels, only: [:new, :create, :show, :edit, :update, :destroy] do
     resources :posts, only: [:new, :create, :show, :edit, :update, :destroy]
   end
+  resources :comments, only: [:destroy, :update] do
+    resources :replies, only: [:create, :index]
+  end
+  resources :replies, only: [:destroy, :update]
   resources :posts do
-    resources :comments, only: [:create, :index, :destroy, :update] do
-      resources :replies, only: [:create, :index, :destroy, :update]
-    end
+    resources :comments, only: [:create, :index]
   end
 end

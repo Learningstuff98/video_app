@@ -8,7 +8,7 @@ class Reply extends React.Component {
   }
 
   deleteReply() {
-    axios.delete(this.props.root_with_post_instance + '/comments/' + this.props.comment.id + '/replies/' + this.props.reply.id)
+    axios.delete(this.props.setRoot() + 'replies/' + this.props.reply.id)
     .then(() => this.props.getReplies())
     .catch((err) => console.log(err.response.data));
   }
@@ -59,11 +59,10 @@ class Reply extends React.Component {
   buildReplyEditForm() {
     return <div>
       <ReplyEditForm
-        root_with_post_instance={this.props.root_with_post_instance}
-        comment={this.props.comment}
         reply={this.props.reply}
         getReplies={this.props.getReplies}
         InvertEditFormShowStatus={this.InvertEditFormShowStatus}
+        setRoot={this.props.setRoot}
       />
     </div>
   }

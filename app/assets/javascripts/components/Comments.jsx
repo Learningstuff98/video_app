@@ -5,10 +5,25 @@ class Comments extends React.Component {
       comments: []
     };
     this.getComments = this.getComments.bind(this);
+    this.setRoot = this.setRoot.bind(this);
   }
 
   componentWillMount() {
     this.getComments();
+  }
+
+  setRoot() {
+    let numberOfSlashes = 0;
+    let root = "";
+    for(char of this.props.root_with_post_instance) {
+      root += char;
+      if(char === "/") {
+        numberOfSlashes++;
+      }
+      if(numberOfSlashes === 3) {
+        return root;
+      }
+    }
   }
 
   getComments() {
@@ -34,7 +49,7 @@ class Comments extends React.Component {
           <Comment
             comment={comment}
             current_user={this.props.current_user}
-            root_with_post_instance={this.props.root_with_post_instance}
+            setRoot={this.setRoot}
             getComments={this.getComments}
           />
         </div>
