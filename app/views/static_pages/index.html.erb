@@ -16,4 +16,18 @@
     <br/>
   <% end %>
 
+  <% if current_user %>
+    <% if !current_user.subscriptions.count.zero? %>
+      <h4 class="make-it-green">Subscriptions</h4>
+    <% else %>
+      <h4 class="make-it-green">You have no subscriptions</h4>
+    <% end %>
+
+    <br/>
+
+    <% current_user.subscriptions.each do |subscription| %>
+      <h3><%= link_to "#{subscription.channel_name}", channel_path(subscription.channel_id), class: "make-it-green" %></h3>
+    <% end %>
+  <% end %>
+
 </div>

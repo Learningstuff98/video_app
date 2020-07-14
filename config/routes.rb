@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   resources :channels, only: [:new, :create, :show, :edit, :update, :destroy] do
     resources :posts, only: [:new, :create, :show, :edit, :update, :destroy]
   end
+  resources :channels, only: [:show] do
+    resources :subscriptions, only: [:create]
+  end
+  resources :subscriptions, only: [:destroy, :index]
   resources :comments, only: [:destroy, :update] do
     resources :replies, only: [:create, :index]
   end

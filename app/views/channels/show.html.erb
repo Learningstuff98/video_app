@@ -1,9 +1,7 @@
 <div class="page-content make-it-green">
-
   <h3><%= @channel.name %></h3>
   <br/>
   <h4><%= @channel.description %></h4>
-
 </div>
 
 <div class="channel-header-line"></div>
@@ -17,6 +15,12 @@
     <%= link_to "Edit this channel", edit_channel_path(@channel), class: "btn btn-primary make-it-green" %>
     <br/><br/>
     <%= link_to "Delete this channel", channel_path(@channel), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary make-it-green" %>
+  <% end %>
+
+  <br/><br/>
+
+  <% if current_user %>
+    <%= react_component("Subscription", { root_with_channel_instance: polymorphic_url(@channel), current_user: current_user, channel: @channel }) %>
   <% end %>
 
   <br/><br/><br/>
