@@ -4,30 +4,33 @@
     <%= link_to "Log in", new_user_session_path, class: "btn btn-primary make-it-green" %>
     <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary make-it-green" %>
   <% else %>
-    <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-primary make-it-green" %>
-    <br/><br/>
-    <%= link_to "Start A Channel", new_channel_path, class: "btn btn-primary make-it-green" %>
+    <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-primary make-it-green homepage-button" %>
+    <%= link_to "Start A Channel", new_channel_path, class: "btn btn-primary make-it-green homepage-button" %>
+  <% end %>
+
+  <% if current_user %>
+    <div class="subscription-box col-2">
+      <% if !current_user.subscriptions.count.zero? %>
+        <h4 class="make-it-green">Subscriptions</h4>
+      <% else %>
+        <h4 class="make-it-green">You have no subscriptions</h4>
+      <% end %>
+
+      <br/>
+
+      <% current_user.subscriptions.each do |subscription| %>
+        <h3><%= link_to "#{subscription.channel_name}", channel_path(subscription.channel_id), class: "make-it-green" %></h3>
+      <% end %>
+    </div>
   <% end %>
 
   <br/><br/>
 
-  <% @channels.each do |channel| %>
-    <h3><%= link_to "#{channel.name}", channel_path(channel), class: "make-it-green" %></h3>
-    <br/>
-  <% end %>
-
-  <% if current_user %>
-    <% if !current_user.subscriptions.count.zero? %>
-      <h4 class="make-it-green">Subscriptions</h4>
-    <% else %>
-      <h4 class="make-it-green">You have no subscriptions</h4>
-    <% end %>
-
-    <br/>
-
-    <% current_user.subscriptions.each do |subscription| %>
-      <h3><%= link_to "#{subscription.channel_name}", channel_path(subscription.channel_id), class: "make-it-green" %></h3>
-    <% end %>
+  <% @posts.each do |post| %>
+    <div><%= image_tag post.picture.url, class: "landing-page-post-image" %></div>
+    <h3 class="video-link"><%= link_to "#{post.title}", channel_post_path(post.channel.id, post), class: "make-it-green" %></h3>
+    <h5><%= link_to post.channel.name, channel_path(post.channel), class: "make-it-green" %></h5>
+    <br/><br/>
   <% end %>
 
 </div>
