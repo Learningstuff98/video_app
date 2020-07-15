@@ -26,6 +26,19 @@
 
   <br/><br/>
 
+  <% if !@posts.count.zero? %>
+    <div class="pagination pagination-text make-it-green">
+      <% if @posts.previous_page %>
+        <%= link_to "< Previous [", params.permit(:page).merge(:page => @posts.previous_page ) %>
+      <% end %>
+      Page <%= @posts.current_page %> of <%= @posts.total_pages %>
+      <% if @posts.next_page %>
+        <%= link_to "] Next >", params.permit(:page).merge(:page => @posts.next_page ) %>
+      <% end %>
+    </div>
+    <br/>
+  <% end %>
+
   <% @posts.each do |post| %>
     <div><%= image_tag post.picture.url, class: "landing-page-post-image" %></div>
     <h3 class="video-link"><%= link_to "#{post.title}", channel_post_path(post.channel.id, post), class: "make-it-green" %></h3>
