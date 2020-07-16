@@ -26,6 +26,17 @@
 
   <br/><br/>
 
+  <%= simple_form_for :search, url: root_path, method: "GET", html: { class: 'form-inline' } do |f| %>
+    <%= f.input :title, input_html: {value: ""} %>
+    <%= f.submit "Search for a video", class: "btn btn-primary make-it-green" %>
+  <% end %>
+
+  <br/><br/>
+
+  <%= link_to "Show newest", root_path, class: "btn btn-primary make-it-green" %>
+
+  <br/><br/>
+
   <% if !@posts.count.zero? %>
     <div class="pagination pagination-text make-it-green">
       <% if @posts.previous_page %>
