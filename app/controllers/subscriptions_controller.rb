@@ -3,6 +3,9 @@ class SubscriptionsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy, :index]
 
   def index
+    current_user.subscriptions.each do |subscription|
+      subscription.update_attribute(:channel_name, subscription.channel.name)
+    end
     render json: current_user.subscriptions 
   end
 
