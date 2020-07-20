@@ -10,7 +10,7 @@ class ChannelsController < ApplicationController
     if @channel.valid?
       redirect_to channel_path(@channel)
     else
-      redirect_to new_channel_path
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -36,14 +36,18 @@ class ChannelsController < ApplicationController
     @channel = Channel.find(params[:id])
     if current_user == @channel.user
       @channel.update_attributes(channel_params)
-      redirect_to channel_path(@channel)
+      if @channel.valid?
+        redirect_to channel_path(@channel)
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
   end
 
   def destroy
     channel = Channel.find(params[:id])
     if current_user == channel.user
-      channel.posts.destroy_all
+      channel.subscriptions.destroy_all
       channel.destroy
       redirect_to root_path
     end

@@ -10,5 +10,22 @@ FactoryBot.define do
     password { "secretPassword" }
     password_confirmation { "secretPassword" }
   end
+
+  factory :channel do
+    name {'channel name'}
+    description {'channel description'}
+    association :user
+  end
+
+  factory :post do
+    title {'post title'}
+    description {'post description'}
+    association :channel
+  end
+
+  factory :subscription do
+    association :channel
+    association :user
+  end
   
 end
