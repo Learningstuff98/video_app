@@ -11,8 +11,10 @@ class SubscriptionsController < ApplicationController
 
   def create
     channel = Channel.find(params[:channel_id])
-    subscription = current_user.subscriptions.create(channel: channel)
-    subscription.update_attribute(:channel_name, channel.name)
+    subscription = current_user.subscriptions.create(
+      channel: channel,
+      channel_name: channel.name
+    )
   end
 
   def destroy
