@@ -17,7 +17,7 @@ class PostsController < ApplicationController
       if post.valid?
         redirect_to channel_post_path(channel, post)
       else
-        redirect_to new_channel_post_path(channel)
+        render :new, status: :unprocessable_entity
       end
     end
   end
@@ -40,7 +40,13 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if current_user == channel.user
       @post.update_attributes(post_params)
-      redirect_to channel_post_path(channel, @post)
+      if @post.valid?
+        redirect_to channel_post_path(channel, @post)
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    else
+      render plain: 'Unauthorized', status: :unauthorized
     end
   end
 
@@ -50,6 +56,8 @@ class PostsController < ApplicationController
     if current_user == channel.user
       post.destroy
       redirect_to channel_path(channel)
+    else
+      render plain: 'Unauthorized', status: :unauthorized
     end
   end
 
