@@ -18,6 +18,8 @@ class CommentsController < ApplicationController
     if current_user == comment.user
       comment.replies.destroy_all
       comment.destroy
+    else
+      render plain: 'Unauthorized', status: :unauthorized
     end
   end
 
@@ -25,6 +27,8 @@ class CommentsController < ApplicationController
     comment = Comment.find(params[:id])
     if current_user == comment.user
       comment.update_attributes(comment_params)
+    else
+      render plain: 'Unauthorized', status: :unauthorized
     end
   end
 

@@ -27,5 +27,11 @@ FactoryBot.define do
     association :channel
     association :user
   end
+
+  factory :comment do
+    content {'comment content'}
+    association :user
+    association :post
+  end
   
 end
