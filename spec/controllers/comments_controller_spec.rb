@@ -57,7 +57,7 @@ RSpec.describe CommentsController, type: :controller do
       user = FactoryBot.create(:user)
       sign_in comment.user
       delete :destroy, params: { id: comment.id }
-      expect(Comment.all.last).to eq nil 
+      expect(Comment.all.count).to eq 0 
     end
   end
 
@@ -72,8 +72,15 @@ RSpec.describe CommentsController, type: :controller do
       comment = FactoryBot.create(:comment)
       user = FactoryBot.create(:user)
       sign_in user
-      post :update, params: { id: comment.id }
+      post :update, params: {
+        id: comment.id,
+        comment: {
+          content: "updated content"
+        }
+      }
       expect(response).to have_http_status(:unauthorized)
+      comment.reload
+      expect(comment.content).to eq "comment content"
     end
 
     it "should let the comment's user update it" do

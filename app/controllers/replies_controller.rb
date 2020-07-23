@@ -17,6 +17,8 @@ class RepliesController < ApplicationController
     reply = Reply.find(params[:id])
     if current_user == reply.user
       reply.destroy
+    else
+      render plain: 'Unauthorized', status: :unauthorized
     end
   end
 
@@ -24,6 +26,8 @@ class RepliesController < ApplicationController
     reply = Reply.find(params[:id])
     if current_user == reply.user
       reply.update_attributes(reply_params)
+    else
+      render plain: 'Unauthorized', status: :unauthorized
     end
   end
 

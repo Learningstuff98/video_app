@@ -33,5 +33,11 @@ FactoryBot.define do
     association :user
     association :post
   end
+
+  factory :reply do
+    content {'reply content'}
+    association :user
+    association :comment
+  end
   
 end
