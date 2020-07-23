@@ -11,15 +11,17 @@ class CommentEditForm extends React.Component {
     .catch((err) => console.log(err.response.data));
   }
 
-  onSubmitForComment(e) {
+  handleCommentSubmission(e) {
     e.preventDefault();
-    this.submitComment({
-      content: this.commentContent.value
-    });
+    if(this.commentContent.value.length === 0) {
+      alert("Comments can't be blank");
+    } else {
+      this.submitComment({ content: this.commentContent.value });
+    }
   }
 
   renderCommentEditForm() {
-    return <form onSubmit={(e) => this.onSubmitForComment(e)}>
+    return <form onSubmit={(e) => this.handleCommentSubmission(e)}>
       <div className="comment-input">
         <input type='text' defaultValue={this.props.comment.content} size="50" ref={(input) => this.commentContent = input}/>
         <br/>

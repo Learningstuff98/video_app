@@ -11,17 +11,19 @@ class ReplyEditForm extends React.Component {
     this.props.InvertEditFormShowStatus();
   }
 
-  onSubmitForReply(e) {
+  handleReplySubmission(e) {
     e.preventDefault();
-    this.submitReply({
-      content: this.newReplyContent.value
-    });
+    if(this.replyContent.value.length === 0) {
+      alert("Replies can't be blank");
+    } else {
+      this.submitReply({ content: this.replyContent.value });
+    }
   }
 
   render() {
-    return <form onSubmit={(e) => this.onSubmitForReply(e)}>
+    return <form onSubmit={(e) => this.handleReplySubmission(e)}>
       <div className="reply-input">
-        <input type='text' defaultValue={this.props.reply.content} size="50" ref={(input) => this.newReplyContent = input}/>
+        <input type='text' defaultValue={this.props.reply.content} size="50" ref={(input) => this.replyContent = input}/>
         <br/>
       </div>
       <input type="submit" value="Edit reply" className="btn btn-primary make-it-green"/>

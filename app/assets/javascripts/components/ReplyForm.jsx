@@ -12,16 +12,18 @@ class ReplyForm extends React.Component {
     this.props.setToShowReplies();
   }
 
-  onSubmitForReply(e) {
+  handleReplySubmission(e) {
     e.preventDefault();
-    this.submitReply({
-      content: this.replyContent.value
-    });
+    if(this.replyContent.value.length === 0) {
+      alert("Replies can't be blank");
+    } else {
+      this.submitReply({ content: this.replyContent.value });
+    }
   }
 
   render() {
     if(this.props.current_user) {
-      return <form onSubmit={(e) => this.onSubmitForReply(e)}>
+      return <form onSubmit={(e) => this.handleReplySubmission(e)}>
         <div className="reply-input">
           <input type='text' placeholder='Reply...' size="50" ref={(input) => this.replyContent = input}/>
           <br/>
