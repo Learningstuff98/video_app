@@ -35,9 +35,11 @@ class VideoLinks extends React.Component {
   }
 
   buildLinksShowButton() {
-    return <span onClick={() => this.invertLinksShowStatus()} className="make-it-green cursor">
-      <span className={`fa fa-angle-${this.handleIconDirection()}`}></span>
-    </span>
+    if(this.props.posts.length > 0) {
+      return <span onClick={() => this.invertLinksShowStatus()} className="make-it-green cursor">
+        <span className={`fa fa-angle-${this.handleIconDirection()}`}></span>
+      </span>
+    }
   }
 
   buildChannelLink() {
