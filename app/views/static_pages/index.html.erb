@@ -9,7 +9,7 @@
   <% end %>
 
   <% if current_user %>
-    <div class="subscription-box col-2">
+    <div class="subscription-box">
       <% if !current_user.subscriptions.count.zero? %>
         <h4 class="make-it-green">Subscriptions</h4>
       <% else %>
@@ -22,10 +22,9 @@
         <% posts = [] %>
         <% subscription.channel.posts.reverse.each do |post| %>
           <% posts.push(post) %>
-          <% if posts.count == 3 %>
-           <% break %>
-          <% end %>
+          <% break if posts.count == 3 %>
         <% end %>
+
         <%= react_component("VideoLinks", {
           root_with_channel_id: polymorphic_url(subscription.channel),
           posts: posts,
