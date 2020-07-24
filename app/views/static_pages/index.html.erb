@@ -19,7 +19,18 @@
       <br/>
 
       <% current_user.subscriptions.each do |subscription| %>
-        <h3><%= link_to "#{subscription.channel_name}", channel_path(subscription.channel_id), class: "make-it-green" %></h3>
+        <% posts = [] %>
+        <% subscription.channel.posts.reverse.each do |post| %>
+          <% posts.push(post) %>
+          <% if posts.count == 3 %>
+           <% break %>
+          <% end %>
+        <% end %>
+        <%= react_component("VideoLinks", {
+          root_with_channel_id: polymorphic_url(subscription.channel),
+          posts: posts,
+          channel: subscription.channel
+        }) %>
       <% end %>
     </div>
   <% end %>
