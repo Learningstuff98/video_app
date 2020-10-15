@@ -8,6 +8,8 @@
     <%= link_to "Start A Channel", new_channel_path, class: "btn btn-primary make-it-green homepage-button" %>
   <% end %>
 
+  <br/><br/>
+
   <% if current_user %>
     <div class="subscription-box">
       <% if !current_user.subscriptions.count.zero? %>

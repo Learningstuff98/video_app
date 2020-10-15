@@ -2,14 +2,15 @@
 @import "font-awesome";
 
 body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
   background-color: rgba(85, 82, 83, 0.9);
 }
 
 .navbar {
   background-color: rgba(24, 21, 22, 0.9);
+}
+
+.link:hover {
+  color: rgb(14, 73, 168);
 }
 
 .make-it-green {
@@ -97,33 +98,9 @@ body {
   padding-bottom: 10px;
 }
 
-.links {
-  width: 500px;
-  position: fixed;
-  top: 5%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.navbar {
-  min-height: 140px;
-}
-
-.navbar-info {
-  margin-top: 25px;
-}
-
-.link {
-  margin: 15px;
-}
-
 .reply-button {
   max-width: 25px;
   font-size: 20px;
-}
-
-.homepage-button {
-  margin-bottom: 10px;
 }
 
 .subscription-box {
